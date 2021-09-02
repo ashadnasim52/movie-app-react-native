@@ -21,7 +21,7 @@ const Player = () => {
 				controls={1}
 				onError={(e) => console.log(e.error)}
 				style={{ alignSelf: 'stretch', height: 300 }}
-				apiKey='AIzaSyAb9D7dU2qlGLOBnx_k4NylBWk1V4yXq3M'
+				apiKey=''
 			/> */}
 			<VideoPlayer
 				source={{ uri: 'https://vjs.zencdn.net/v/oceans.mp4' }}
