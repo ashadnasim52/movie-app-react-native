@@ -16,6 +16,7 @@ import { COLORS, FONTS, SIZES } from '../constants/theme';
 import dummyData from '../constants/dummy';
 import Profiles from '../components/Profiles';
 import ProgressBar from '../components/ProgressBar';
+import auth from '@react-native-firebase/auth';
 
 const Home = ({ navigation }) => {
 	const newSeasonScrollX = React.useRef(new Animated.Value(0)).current;
@@ -183,9 +184,14 @@ const Home = ({ navigation }) => {
 						justifyContent: 'center',
 						alignItems: 'center',
 					}}
+					onPress={() => {
+						auth()
+							.signOut()
+							.then(() => console.log('User signed out!'));
+					}}
 				>
 					<Image
-						source={icons.airplay}
+						source={icons.logout}
 						style={{
 							height: 25,
 							width: 25,
