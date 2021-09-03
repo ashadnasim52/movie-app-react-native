@@ -302,7 +302,11 @@ const Home = ({ navigation }) => {
 					renderItem={({ item, index }) => {
 						return (
 							<TouchableWithoutFeedback
-								onPress={() => console.log('Movie Details')}
+								onPress={() => {
+									navigation.navigate('MovieDetail', {
+										selectedMovie: item,
+									});
+								}}
 							>
 								<View
 									style={{

@@ -14,7 +14,7 @@ import {
 	Text,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { COLORS } from '../constants';
+import { COLORS, FONTS } from '../constants';
 
 const PhoneNumber = ({ signInWithPhoneNumber }) => {
 	console.log('PhoneNumberPhoneNumber');
@@ -29,6 +29,7 @@ const PhoneNumber = ({ signInWithPhoneNumber }) => {
 					flexGrow: 1,
 					justifyContent: 'center',
 					alignItems: 'center',
+					backgroundColor: 'black',
 				}}
 			>
 				<ActivityIndicator size='large' color='red' />
@@ -36,13 +37,12 @@ const PhoneNumber = ({ signInWithPhoneNumber }) => {
 		);
 	}
 	return (
-		<KeyboardAwareScrollView
+		<ScrollView
 			contentContainerStyle={{
 				flexGrow: 1,
-				backgroundColor: 'red',
 			}}
 		>
-			<View style={styles.container} level='1'>
+			<View style={styles.container}>
 				<View style={styles.imageContainer}>
 					<Image
 						source={require('../assets/images/imaaa.png')}
@@ -51,10 +51,13 @@ const PhoneNumber = ({ signInWithPhoneNumber }) => {
 				</View>
 				<View level='2' style={styles.bottomLayout}>
 					<Text
-						category='h5'
 						style={{
-							paddingBottom: 5,
+							paddingBottom: 25,
 							textAlign: 'center',
+							...FONTS.h4,
+							fontSize: 18,
+							color: COLORS.primary,
+							textTransform: 'uppercase',
 						}}
 					>
 						Enter your phone number
@@ -71,11 +74,15 @@ const PhoneNumber = ({ signInWithPhoneNumber }) => {
 						}}
 						containerStyle={{
 							width: '100%',
+							// height: 50,
+							padding: 0,
 						}}
-						textContainerStyle={{
-							borderWidth: 1,
-							borderColor: COLORS.primary,
-						}}
+						textContainerStyle={
+							{
+								// borderColor: COLORS.primary,
+							}
+						}
+						textInputStyle={{}}
 						// withDarkTheme
 						// autoFocus
 					/>
@@ -90,13 +97,21 @@ const PhoneNumber = ({ signInWithPhoneNumber }) => {
 							}
 						}}
 					>
-						<Text>Verify</Text>
+						<Text
+							style={{
+								color: COLORS.white,
+								...FONTS.h2,
+							}}
+						>
+							Verify
+						</Text>
 					</TouchableOpacity>
 					<Text
 						category='c1'
 						appearance='hint'
 						style={{
 							textAlign: 'center',
+							color: '#EDEDED',
 						}}
 					>
 						By tapping Verify, you are indicating that you accept our Terms of
@@ -105,7 +120,7 @@ const PhoneNumber = ({ signInWithPhoneNumber }) => {
 					</Text>
 				</View>
 			</View>
-		</KeyboardAwareScrollView>
+		</ScrollView>
 	);
 };
 
@@ -113,30 +128,37 @@ export default PhoneNumber;
 
 const styles = StyleSheet.create({
 	container: {
-		flexGrow: 1,
+		flex: 1,
+		backgroundColor: '#171717',
 	},
 	imageContainer: {
-		flexBasis: 1.5,
 		justifyContent: 'center',
 		alignItems: 'center',
+		flex: 1,
 	},
 
 	bottomLayout: {
-		flexGrow: 5,
 		borderTopLeftRadius: 25,
 		borderTopRightRadius: 25,
 		overflow: 'hidden',
 		justifyContent: 'space-around',
 		paddingHorizontal: 20,
-		paddingVertical: 10,
-		flexGrow: 1,
+		paddingVertical: 30,
+		backgroundColor: 'black',
 	},
 	image: {
-		flex: 1,
-		width: '80%',
+		height: 300,
+		width: '100%',
 		resizeMode: 'contain',
 	},
 	button: {
 		borderRadius: 25,
+		height: 60,
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginBottom: 20,
+		borderRadius: 15,
+		backgroundColor: COLORS.primary,
+		marginTop: 10,
 	},
 });

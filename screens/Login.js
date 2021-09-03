@@ -6,6 +6,7 @@ import {
 	StyleSheet,
 	View,
 	TouchableOpacity,
+	ScrollView,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import PhoneNumber from '../components/PhoneNumber';
@@ -46,105 +47,149 @@ export const PhoneSignIn = () => {
 	}
 
 	return (
-		<View
-			style={{
-				flex: 1,
+		<ScrollView
+			contentContainerStyle={{
+				flexGrow: 1,
 			}}
 		>
 			<View
 				style={{
-					flexGrow: 1,
-					justifyContent: 'center',
-					alignItems: 'center',
+					flex: 1,
+					backgroundColor: 'black',
 				}}
 			>
-				<Image
-					source={require('../assets/images/search.png')}
+				<View
 					style={{
-						height: 100,
-						width: '80%',
-						resizeMode: 'contain',
+						flexGrow: 1,
+						justifyContent: 'center',
+						alignItems: 'center',
 					}}
-				/>
-			</View>
-			<View
-				style={{
-					marginHorizontal: 20,
-					flex: 3,
-				}}
-			>
-				<View>
-					<View
+				>
+					<Image
+						source={require('../assets/images/search.png')}
 						style={{
-							flexDirection: 'row',
-							paddingBottom: 10,
-							marginBottom: 10,
+							height: 300,
+							width: '80%',
+							resizeMode: 'contain',
 						}}
-					>
-						<Text
-							category='h2'
-							style={{
-								color: COLORS.primary,
-								borderBottomColor: COLORS.black,
-								borderBottomWidth: 5,
-							}}
-						>
-							OTP
-						</Text>
-						<Text
-							category='h2'
-							style={{
-								color: COLORS.primary,
-							}}
-						>
-							{' '}
-							Verification
-						</Text>
-					</View>
-
-					<Text category='h6' appearance='hint'>
-						Enter the 6-digit code we sent to
-					</Text>
-					<Text category='h6' status='primary'>
-						{number}
-					</Text>
-					<OTPTextView
-						ref={otpInputRef}
-						containerStyle={styles.textInputContainer}
-						handleTextChange={(code) => {
-							console.log(`Code is ${code}, you are good to go!`);
-							setCode(code);
-						}}
-						inputCount={6}
-						keyboardType='numeric'
-						textInputStyle={styles.borderStyleBase}
 					/>
-
-					{code ? (
-						<TouchableOpacity
-							onPress={() => {
-								confirmCode();
-							}}
+				</View>
+				<View
+					style={{
+						marginHorizontal: 20,
+						flex: 3,
+					}}
+				>
+					<View>
+						<View
 							style={{
+								flexDirection: 'row',
+								paddingBottom: 10,
 								marginBottom: 10,
 							}}
 						>
-							<Text>Continue</Text>
-						</TouchableOpacity>
-					) : null}
+							<Text
+								category='h2'
+								style={{
+									color: COLORS.primary,
+									borderBottomColor: COLORS.primary,
+									borderBottomWidth: 5,
+									...FONTS.largeTitle,
+								}}
+							>
+								OTP
+							</Text>
+							<Text
+								category='h2'
+								style={{
+									color: COLORS.primary,
+									...FONTS.largeTitle,
+								}}
+							>
+								{' '}
+								Verification
+							</Text>
+						</View>
 
-					<TouchableOpacity
-						appearance='outline'
-						status='basic'
-						onPress={() => {
-							setConfirm(null);
-						}}
-					>
-						<Text>Want to Change Phone Number?</Text>
-					</TouchableOpacity>
+						<Text
+							style={{
+								color: COLORS.primary,
+								...FONTS.h4,
+							}}
+						>
+							Enter the 6-digit code we sent to
+						</Text>
+						<Text
+							category='h6'
+							status='primary'
+							style={{
+								color: COLORS.primary,
+								...FONTS.body1,
+							}}
+						>
+							{number}
+						</Text>
+						<OTPTextView
+							ref={otpInputRef}
+							containerStyle={{
+								marginVertical: 20,
+							}}
+							handleTextChange={(code) => {
+								console.log(`Code is ${code}, you are good to go!`);
+								setCode(code);
+							}}
+							inputCount={6}
+							keyboardType='numeric'
+							textInputStyle={styles.borderStyleBase}
+						/>
+
+						{code ? (
+							<TouchableOpacity
+								onPress={() => {
+									confirmCode();
+								}}
+								style={{
+									borderRadius: 25,
+									height: 60,
+									alignItems: 'center',
+									justifyContent: 'center',
+									marginBottom: 20,
+									borderRadius: 15,
+									backgroundColor: COLORS.primary,
+									marginTop: 20,
+								}}
+							>
+								<Text
+									style={{
+										color: COLORS.white,
+										...FONTS.h2,
+									}}
+								>
+									Continue
+								</Text>
+							</TouchableOpacity>
+						) : null}
+
+						<TouchableOpacity
+							appearance='outline'
+							status='basic'
+							onPress={() => {
+								setConfirm(null);
+							}}
+						>
+							<Text
+								style={{
+									textAlign: 'center',
+									color: '#EDEDED',
+								}}
+							>
+								Want to Change Phone Number?
+							</Text>
+						</TouchableOpacity>
+					</View>
 				</View>
 			</View>
-		</View>
+		</ScrollView>
 	);
 };
 
@@ -155,6 +200,7 @@ const styles = StyleSheet.create({
 		width: 30,
 		height: 45,
 		borderColor: COLORS.primary,
+		color: COLORS.white,
 	},
 
 	borderStyleHighLighted: {

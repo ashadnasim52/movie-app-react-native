@@ -255,7 +255,9 @@ const MovieDetail = ({ route, navigation }) => {
 						borderRadius: 15,
 						backgroundColor: COLORS.primary,
 					}}
-					onPress={() => navigation.navigate('CustomVideoPlayer')}
+					onPress={() => navigation.navigate('CustomVideoPlayer',{
+						item: selectedMovie
+					})}
 				>
 					<Text
 						style={{
